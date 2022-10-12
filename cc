@@ -6,6 +6,7 @@ site="http://172.16.1.1:8090"
 
 #curl -S "${site}/login.xml" -H "Content-Type: application/x-www-form-urlencoded" -d "mode=191&username=${username}&password=${password}&a=1664597185453&producttype=0"
 
+fmt_help="%s\t%s\n"
 
 #init funtion
 
@@ -51,6 +52,9 @@ lgout(){
    curl -S "${site}/logout.xml" -H "Content-Type: application/x-www-form-urlencoded" -d "mode=193&username=${credentials[0]}&a=1665550636225&producttype=0"
     credentials=($value)
 }
+
+
+
 #switch case for command read
 case $1 in
     "init" | "-i" )
@@ -73,9 +77,10 @@ case $1 in
         echo
         echo "usage: cc [OPTION]"
         echo
-        echo "-i, init\t Initialises the script to save username and password."
-        echo "-l, login\t To directily login to  wifi."
-        echo "-e, logout\t To logout of  wifi."
+        printf "${fmt_help}" "-i, init" "Initialises the script to save username and password." 
+        printf "${fmt_help}" "-l, login" "To directily login to wifi."
+        printf "${fmt_help}" "-e, logout" "To logout of wifi."
+        printf "${fmt_help}" "-h, help" "To access the help page"
         ;;
     *)
         echo "Enter valid commands.."
